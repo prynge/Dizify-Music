@@ -1,11 +1,15 @@
 package com.dizify.music.entity;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,15 +27,18 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    private Artist artist;
+//    @ManyToOne
+//    private Artist artist;
 
     private String name;
 
     private String picture;
 
     private String date;
-
+    
+    @OneToMany
+    private Set<Title> title = new HashSet<>();
+    
     /**
      * @return the id
      */
@@ -63,17 +70,31 @@ public class Album {
     /**
      * @return the artist
      */
-    public Artist getArtist() {
-        return artist;
-    }
+//    public Artist getArtist() {
+//        return artist;
+//    }
+//
+//    /**
+//     * @param artist the artist to set
+//     */
+//    public void setArtist(Artist artist) {
+//        this.artist = artist;
+//    }
 
     /**
-     * @param artist the artist to set
+     * @return the title
      */
-    public void setArtist(Artist artist) {
-        this.artist = artist;
-    }
-
+//    public Set<Title> getTitle() {
+//    	return title;
+//    }
+    
+    /**
+     * @param title the title to set
+     */
+//    public void setTitle(Set<Title> title) {
+//    	this.title = title;
+//    }
+    
     /**
      * @param id the id to set
      */

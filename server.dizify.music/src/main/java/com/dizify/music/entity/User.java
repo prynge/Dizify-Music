@@ -30,6 +30,8 @@ public class User {
     private String fname;
     
     private String lname;
+    
+    private String avatar;
 
     /**
      * @return the email
@@ -67,6 +69,13 @@ public class User {
     }
 
     /**
+     * @return the avatar
+     */
+    public String getAvatar() {
+    	return avatar;
+    }
+    
+    /**
      * @param email the email to set
      */
     public void setEmail(String email) {
@@ -101,4 +110,11 @@ public class User {
         this.lname = lname;
     }
 
+    /**
+     * @param avatar the avatar to set
+     */
+    public void setAvatar(String avatar) {
+    	this.avatar = avatar;
+    }
+    
 }

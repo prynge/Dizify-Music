@@ -27,4 +27,13 @@ public interface TitleRepository extends JpaRepository<Title, Integer> {
     @Query("SELECT b FROM Title b WHERE b.name LIKE %:title%")
     public List<Title> findByName(@Param("title") String title);
 
+    /**
+     * Recherche un titre selon son artist.
+     * 
+     * @param artistId paramètre de recherche
+     * @return un titre
+     */
+//    @Query("SELECT b FROM Title b WHERE b.artists.id IN (SELECT a FROM Artist a WHERE a.name = :artistId)")
+//    public List<Title> findByArtist(@Param("artistId") String artistId);
+
 }

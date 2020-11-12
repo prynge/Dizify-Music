@@ -26,11 +26,11 @@ public class Title {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToMany
-    private Set<Artist> artists = new HashSet<>();
+//    @ManyToMany(mappedBy="title")
+//    private Set<Artist> artists = new HashSet<>();
 
-    @ManyToOne
-    private Album album;
+//    @ManyToOne
+//    private Album album;
     
     private String name;
 
@@ -60,30 +60,30 @@ public class Title {
     /**
      * @return the artists
      */
-    public Set<Artist> getArtists() {
-        return artists;
-    }
+//    public Set<Artist> getArtists() {
+//        return artists;
+//    }
 
     /**
      * @return the album
      */
-    public Album getAlbum() {
-    	return album;
-    }
+//    public Album getAlbum() {
+//    	return album;
+//    }
     
     /**
      * @param authors the artists to set
      */
-    public void setArtists(Set<Artist> artists) {
-        this.artists = artists;
-    }
+//    public void setArtists(Set<Artist> artists) {
+//        this.artists = artists;
+//    }
     
     /**
      * @param authors the album to set
      */
-    public void setAlbum(Album album) {
-    	this.album = album;
-    }
+//    public void setAlbum(Album album) {
+//    	this.album = album;
+//    }
 
     /**
      * @param id the id to set

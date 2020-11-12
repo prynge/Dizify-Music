@@ -16,6 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dizify.music.entity.User;
 import com.dizify.music.repository.UserRepository;
 
+/*
+ * Gestion des roles
+ * -Un utilisateur doit être authentifié pour créer du contenu qui lui est propre
+ * -Un utilisateur ne peut consulter le contenu d’un autre utilisateur
+ * -Un Utilisateur doit pouvoir créer un compte en autonomie avec son adresse email
+ * 			– Pas de gestion réelle des emails à prévoir : on se servira juste de l’email pour ajouter un nouvel utilisateur (email = clé primaire unique)
+ * 			– Pas de suppression de compte, d’anonymisation ou de RGPD à implémenter
+ * 
+ * 
+ */
 @RestController
 public class UserController {
 
