@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,7 +25,7 @@ public class Fav {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @OneToOne
     private User user;
 
     @ManyToOne
@@ -35,7 +37,7 @@ public class Fav {
     @ManyToOne
     private Artist artist;
     
-    @ManyToOne
+    @ManyToMany
     private Type type;
 
     /**
