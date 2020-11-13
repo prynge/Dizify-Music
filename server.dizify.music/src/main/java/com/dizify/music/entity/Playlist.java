@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * Entité Livre persistente en base de données.
+ * Entité aylist persistente en base de données.
  * 
  * @author Yann KOTTO
  * @author Maxime GRAND
@@ -26,13 +26,13 @@ public class Playlist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToMany
-    private Set<Title> songs = new HashSet<>();
-
     private String name;
     
     @ManyToOne
-    private User owner;
+    private User user;
+
+    @ManyToMany
+    private Set<Title> titles = new HashSet<>();
 
     /**
      * @return the id
@@ -49,24 +49,24 @@ public class Playlist {
     }
 
     /**
-     * @return the owner
+     * @return the user
      */
-    public User getOwner() {
-        return owner;
+    public User getUser() {
+        return user;
     }
 
     /**
-     * @return the songs
+     * @return the titles
      */
-    public Set<Title> getSongs() {
-        return songs;
+    public Set<Title> getTitle() {
+        return titles;
     }
 
     /**
-     * @param songs the songs to set
+     * @param titles the titles to set
      */
-    public void setSongs(Set<Title> songs) {
-        this.songs = songs;
+    public void setTitles(Set<Title> titles) {
+        this.titles = titles;
     }
 
     /**
@@ -84,10 +84,10 @@ public class Playlist {
     }
 
     /**
-     * @param owner the owner to set
+     * @param user the user to set
      */
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

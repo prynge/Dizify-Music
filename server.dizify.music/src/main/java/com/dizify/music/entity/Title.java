@@ -1,18 +1,14 @@
 package com.dizify.music.entity;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * Entité Livre persistente en base de données.
+ * Entité Title persistente en base de données.
  * 
  * @author Yann KOTTO
  * @author Maxime GRAND
@@ -25,16 +21,16 @@ public class Title {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-//    @ManyToMany(mappedBy="title")
-//    private Set<Artist> artists = new HashSet<>();
-
-//    @ManyToOne
-//    private Album album;
     
     private String name;
 
     private Integer length;
+
+    @ManyToOne
+    private Artist artist;
+
+    @ManyToOne
+    private Album album;
 
     /**
      * @return the id
@@ -58,32 +54,32 @@ public class Title {
     }
 
     /**
-     * @return the artists
+     * @return the artist
      */
-//    public Set<Artist> getArtists() {
-//        return artists;
-//    }
+    public Artist getArtist() {
+        return artist;
+    }
 
     /**
      * @return the album
      */
-//    public Album getAlbum() {
-//    	return album;
-//    }
+    public Album getAlbum() {
+    	return album;
+    }
     
     /**
-     * @param authors the artists to set
+     * @param artist the artist to set
      */
-//    public void setArtists(Set<Artist> artists) {
-//        this.artists = artists;
-//    }
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
     
     /**
-     * @param authors the album to set
+     * @param album the album to set
      */
-//    public void setAlbum(Album album) {
-//    	this.album = album;
-//    }
+    public void setAlbum(Album album) {
+    	this.album = album;
+    }
 
     /**
      * @param id the id to set
