@@ -3,10 +3,8 @@ package com.dizify.music.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
 import com.dizify.music.entity.Fav;
+import com.dizify.music.entity.User;
 
 /**
  * Extension du Repository CRUD pour ajouter une méthode métier.
@@ -18,13 +16,7 @@ import com.dizify.music.entity.Fav;
  */
 public interface FavRepository extends JpaRepository<Fav, Integer> {
 
-    /**
-     * Recherche un fav selon son propriétaire.
-     * 
-     * @param owner paramètre de recherche
-     * @return un fav
-     */
-    @Query("SELECT b FROM Fav b WHERE b.faved_by LIKE %:owner%")
-    public List<Fav> findByOwner(@Param("owner") String owner);
+    
+    public List<Fav> findByUser(User user);
 
 }

@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.dizify.music.entity.Album;
+import com.dizify.music.entity.Artist;
 import com.dizify.music.entity.Title;
 
 /**
@@ -33,7 +35,8 @@ public interface TitleRepository extends JpaRepository<Title, Integer> {
      * @param artistId paramètre de recherche
      * @return un titre
      */
-//    @Query("SELECT b FROM Title b WHERE b.artists.id IN (SELECT a FROM Artist a WHERE a.name = :artistId)")
-//    public List<Title> findByArtist(@Param("artistId") String artistId);
+    
+    public List<Title> findByArtist(Artist artist);
+    public List<Title> findByAlbum(Album album);
 
 }

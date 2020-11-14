@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dizify.music.entity.Album;
+import com.dizify.music.entity.Title;
 import com.dizify.music.repository.AlbumRepository;
+import com.dizify.music.repository.TitleRepository;
 
 /*
  * Fonctionnalités à implémenter
@@ -28,10 +30,12 @@ import com.dizify.music.repository.AlbumRepository;
 public class AlbumController {
 
     private AlbumRepository albumRepository;
+    private TitleRepository titleRepository;
 
     @Autowired
-    public AlbumController(AlbumRepository albumRepository) {
+    public AlbumController(AlbumRepository albumRepository, TitleRepository titleRepository) {
         this.albumRepository = albumRepository;
+        this.titleRepository = titleRepository;
     }
 
     @ResponseBody
@@ -71,6 +75,17 @@ public class AlbumController {
         }
     }
 
+    @ResponseBody
+    @GetMapping("/album/{id}/title")
+    public List<Title> getTitleByAlbum(final Album album) {
+    	try {
+    		List<Title> titles = titleRepository.findByAlbum(album);
+    		return titles;
+    	} catch (Exception e) {
+    		return null;
+    	}
+    }
+    
     @PostMapping("/album")
     public Album addAlbum(@RequestBody Album album) {
         Album saved = albumRepository.save(album);

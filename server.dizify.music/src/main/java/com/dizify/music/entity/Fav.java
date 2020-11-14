@@ -6,8 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,7 +23,7 @@ public class Fav {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
+    @ManyToOne
     private User user;
 
     @ManyToOne
@@ -36,9 +34,6 @@ public class Fav {
     
     @ManyToOne
     private Artist artist;
-    
-    @ManyToMany
-    private Type type;
 
     /**
      * @return the id
@@ -76,13 +71,6 @@ public class Fav {
     }
 
     /**
-     * @return the type
-     */
-    public Type getType() {
-        return type;
-    }
-
-    /**
      * @param id the id to set
      */
     public void setId(Integer id) {
@@ -115,13 +103,6 @@ public class Fav {
      */
     public void setArtist(Artist artist) {
     	this.artist = artist;
-    }
-    
-    /**
-     * @param type the type to set
-     */
-    public void setType(Type type) {
-        this.type = type;
     }
 
 }

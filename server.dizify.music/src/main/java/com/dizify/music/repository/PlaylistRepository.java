@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.dizify.music.entity.Playlist;
+import com.dizify.music.entity.User;
 
 /**
  * Extension du Repository CRUD pour ajouter une méthode métier.
@@ -26,5 +27,7 @@ public interface PlaylistRepository extends JpaRepository<Playlist, Integer> {
      */
     @Query("SELECT b FROM Playlist b WHERE b.name LIKE %:name%")
     public List<Playlist> findByName(@Param("name") String name);
+    
+    public List<Playlist> findByUser(User user);
 
 }

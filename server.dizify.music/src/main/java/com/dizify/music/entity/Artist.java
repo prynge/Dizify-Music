@@ -28,10 +28,17 @@ public class Artist {
     
     
     /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
      * @return the name
      */
     public String getName() {
-        return name;
+    	return name;
     }
 
     /**
@@ -44,10 +51,17 @@ public class Artist {
     /**
      * @param name the name to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+    	this.name = name;
+    }
+    
     /**
      * @param picture the picture to set
      */

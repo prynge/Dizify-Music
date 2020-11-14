@@ -1,5 +1,6 @@
 package com.dizify.music.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dizify.music.entity.Playlist;
 import com.dizify.music.entity.User;
+import com.dizify.music.entity.Fav;
 import com.dizify.music.repository.UserRepository;
+import com.dizify.music.repository.PlaylistRepository;
+import com.dizify.music.repository.FavRepository;
 
 /*
  * Gestion des roles
@@ -30,39 +35,105 @@ import com.dizify.music.repository.UserRepository;
 public class UserController {
 
     private UserRepository userRepository;
+    private PlaylistRepository playlistRepository;
+    private FavRepository favRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, PlaylistRepository playlistRepository, FavRepository favRepository) {
         this.userRepository = userRepository;
+        this.playlistRepository = playlistRepository;
+        this.favRepository = favRepository;
     }
+    
+    /*
+     * Liste des utilisateur suivant le mail
+     */
+//    @ResponseBody
+//    @RequestMapping(value = "/user", method = RequestMethod.GET, params = "mail")
+//    public List<User> getUserByMail(@RequestParam(value = "mail", defaultValue = "") String mail) {
+//        List<User> users = userRepository.findByMail(mail);
+//        return users;
+//    }
 
+    /*
+     * Afficher un utilisateur
+     */
     @ResponseBody
-    @GetMapping("/user/{mail}")
-    public User getUserById(final @PathVariable("mail") Integer userMail) {
+    @GetMapping("/user/{id}")
+    public User getUserById(final @PathVariable("id") Integer userId) {
         try {
-            Optional<User> user = userRepository.findById(Integer.valueOf(userMail));
+            Optional<User> user = userRepository.findById(Integer.valueOf(userId));
             return user.get();
         } catch (Exception e) {
             return null;
         }
     }
     
+    /*
+     * Afficher un utilisateur
+     */
+    @ResponseBody
+    @GetMapping("/user/{mail}")
+    public User getUserById(final @PathVariable("mail") String userMail) {
+    	return userRepository.findByMail(userMail);
+    }
+    
+    /*
+     * Afficher ses playlists dans une section
+     */
+    @ResponseBody
+    @GetMapping("/user/{mail}/playlist")
+    public List<Playlist> getPlaylistByUser(final User user) {
+    	try {
+    		List<Playlist> playlists = playlistRepository.findByUser(user);
+    		return playlists;
+    	} catch (Exception e) {
+    			return new ArrayList<Playlist>();
+    		}
+    }
+    
+    /*
+     * Afficher ses Favoris dans une section
+     */
+    @ResponseBody
+    @GetMapping("/user/{mail}/favoris")
+    public List<Fav> getFavByUser(final User user) {
+    	try {
+    		List<Fav> favs = favRepository.findByUser(user);
+    		return favs;
+    	} catch (Exception e) {
+			return new ArrayList<Fav>();
+		}
+    }
+
+    /*
+     * Supprimer un utilisateur
+     */
     @DeleteMapping("/user/{id}")
     public void deleteUser(final @PathVariable("id") Integer userId) {
         userRepository.deleteById(userId);
     }
 
+    /*
+     * Afficher tous les utilisateurs
+     */
     @GetMapping("/user")
     public List<User> getUsers() {
         return userRepository.findAll();
     }
 
+    /*
+     * Ajouter un utilisateur
+     */
     @PostMapping("/user")
     public User addUser(@RequestBody User user) {
         User saved = userRepository.save(user);
         return saved;
     }
 
+    /*
+     * Modifier un utilisateur
+     */
     @ResponseBody
     @PutMapping("/user/{id}")
     public User editUser(@RequestBody User user) {
