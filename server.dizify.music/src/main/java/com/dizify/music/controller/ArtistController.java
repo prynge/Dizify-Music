@@ -32,6 +32,7 @@ import com.dizify.music.repository.AlbumRepository;
  * -Afficher ses Titres dans une autre section
  */
 @RestController
+@RequestMapping(value = "/api")
 public class ArtistController {
 
     private ArtistRepository artistRepository;

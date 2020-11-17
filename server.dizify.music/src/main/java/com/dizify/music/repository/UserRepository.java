@@ -1,5 +1,7 @@
 package com.dizify.music.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,6 +25,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * @return un utilisateur
      */
     @Query("SELECT b FROM User b WHERE b.email LIKE %:email%")
-    public User findByMail(@Param("email") String email);
+    public Optional<User> findByMail(@Param("email") String email);
 
+    
+    Boolean existsByEmail(String email);
 }

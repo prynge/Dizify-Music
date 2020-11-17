@@ -27,6 +27,7 @@ import com.dizify.music.repository.TitleRepository;
  * -Afficher ses Titres dans une autre section
  */
 @RestController
+@RequestMapping(value = "/api")
 public class AlbumController {
 
     private AlbumRepository albumRepository;

@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,17 +35,20 @@ import com.dizify.music.repository.FavRepository;
  * 
  */
 @RestController
+@RequestMapping(value = "/api/user")
 public class UserController {
 
     private UserRepository userRepository;
     private PlaylistRepository playlistRepository;
     private FavRepository favRepository;
+    //private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserController(UserRepository userRepository, PlaylistRepository playlistRepository, FavRepository favRepository) {
         this.userRepository = userRepository;
         this.playlistRepository = playlistRepository;
         this.favRepository = favRepository;
+        //this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
     
     /*
@@ -59,7 +65,7 @@ public class UserController {
      * Afficher un utilisateur
      */
     @ResponseBody
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     public User getUserById(final @PathVariable("id") Integer userId) {
         try {
             Optional<User> user = userRepository.findById(Integer.valueOf(userId));
@@ -73,16 +79,16 @@ public class UserController {
      * Afficher un utilisateur
      */
     @ResponseBody
-    @GetMapping("/user/{mail}")
+    @GetMapping("/{mail}")
     public User getUserById(final @PathVariable("mail") String userMail) {
-    	return userRepository.findByMail(userMail);
+    	return userRepository.findByMail(userMail).get();
     }
     
     /*
      * Afficher ses playlists dans une section
      */
     @ResponseBody
-    @GetMapping("/user/{mail}/playlist")
+    @GetMapping("/{mail}/playlist")
     public List<Playlist> getPlaylistByUser(final User user) {
     	try {
     		List<Playlist> playlists = playlistRepository.findByUser(user);
@@ -96,7 +102,7 @@ public class UserController {
      * Afficher ses Favoris dans une section
      */
     @ResponseBody
-    @GetMapping("/user/{mail}/favoris")
+    @GetMapping("/{mail}/favoris")
     public List<Fav> getFavByUser(final User user) {
     	try {
     		List<Fav> favs = favRepository.findByUser(user);
@@ -109,7 +115,7 @@ public class UserController {
     /*
      * Supprimer un utilisateur
      */
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUser(final @PathVariable("id") Integer userId) {
         userRepository.deleteById(userId);
     }
@@ -117,7 +123,7 @@ public class UserController {
     /*
      * Afficher tous les utilisateurs
      */
-    @GetMapping("/user")
+    @GetMapping("/")
     public List<User> getUsers() {
         return userRepository.findAll();
     }
@@ -125,7 +131,7 @@ public class UserController {
     /*
      * Ajouter un utilisateur
      */
-    @PostMapping("/user")
+    @PostMapping("/")
     public User addUser(@RequestBody User user) {
         User saved = userRepository.save(user);
         return saved;
@@ -135,10 +141,19 @@ public class UserController {
      * Modifier un utilisateur
      */
     @ResponseBody
-    @PutMapping("/user/{id}")
+    @PutMapping("/{id}")
     public User editUser(@RequestBody User user) {
         User updated = userRepository.save(user);
         return updated;
     }
+    
+    /*
+     * Signup
+     */
+//    @PostMapping("/signup")
+//    public void signUp(@RequestBody User user){
+//        user.setPwd(bCryptPasswordEncoder.encode(user.getPwd()));
+//        userRepository.save(user);
+//    }
 
 }

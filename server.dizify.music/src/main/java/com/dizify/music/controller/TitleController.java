@@ -18,6 +18,7 @@ import com.dizify.music.entity.Title;
 import com.dizify.music.repository.TitleRepository;
 
 @RestController
+@RequestMapping(value = "/api")
 public class TitleController {
 
     private TitleRepository titleRepository;

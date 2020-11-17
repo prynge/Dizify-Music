@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -32,6 +33,9 @@ public class User {
     private String lname;
     
     private String avatar;
+    
+    @ManyToOne
+    private Role role;
 
     /**
      * @return the email
@@ -116,5 +120,19 @@ public class User {
     public void setAvatar(String avatar) {
     	this.avatar = avatar;
     }
+
+    /**
+     * @return the role
+     */
+    public Role getRole() {
+		return role;
+	}
+
+    /**
+     * @param role the role to set
+     */
+	public void setRole(Role role) {
+		this.role = role;
+	}
     
 }

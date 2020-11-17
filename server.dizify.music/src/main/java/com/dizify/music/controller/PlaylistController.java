@@ -25,6 +25,7 @@ import com.dizify.music.repository.PlaylistRepository;
  * 
  */
 @RestController
+@RequestMapping(value = "/api")
 public class PlaylistController {
 
     private PlaylistRepository playlistRepository;

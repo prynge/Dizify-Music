@@ -1,0 +1,4 @@
+
+*.class
+server.dizify.music/target/classes/META-INF/maven/com.ynov.web_service.rest/dizify.music/pom.xml
+server.dizify.music/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
