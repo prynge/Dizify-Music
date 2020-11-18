@@ -179,10 +179,8 @@ public class AuthController {
 		//authenticate(authenticationRequest.getEmail(), authenticationRequest.getPassword());
 
 		final UserDetails userDetails = userDetailsService.loadUserByEmail(authenticationRequest.getEmail());
-		System.out.println(userDetails);
 		
 		final String token = jwtTokenUtil.generateToken(userDetails);
-		System.out.println(token);
 		
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
@@ -193,11 +191,8 @@ public class AuthController {
 	}
 
 	private void authenticate(String username, String password) throws Exception {
-		Collection<? extends GrantedAuthority> authorities = new ArrayList<>();
-		Authentication yann = new UsernamePasswordAuthenticationToken(username, password, authorities);
-		yann.setAuthenticated(true);
 		try {
-			authenticationManager.authenticate(yann);
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		} catch (DisabledException e) {
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {

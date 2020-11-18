@@ -38,9 +38,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found with email: " + email);
 		}
-		System.out.println("det mail "+ user.get().getpassword()+" "+user.get().getFname());
 		return new org.springframework.security.core.userdetails.User(user.get().getEmail(), user.get().getpassword(),new ArrayList<>());
-		//return new UserDetailsImpl(user.get().getId(), user.get().getEmail(), bcryptEncoder.encode(user.get().getpassword()), user.get().getFname(), user.get().getLname(), user.get().getAvatar(), user.get().getRole());
 	}
 	
 	public User save(UserDTO user) {
