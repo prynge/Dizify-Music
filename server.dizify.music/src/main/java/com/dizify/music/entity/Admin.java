@@ -25,7 +25,7 @@ public class Admin {
     
     private String pseudo;
 
-    private String pwd;
+    private String password;
 
     /**
      * @return the pseudo
@@ -35,10 +35,10 @@ public class Admin {
     }
 
     /**
-     * @return the pwd
+     * @return the password
      */
-    public String getPwd() {
-        return pwd;
+    public String getpassword() {
+        return password;
     }
 
     /**
@@ -56,10 +56,10 @@ public class Admin {
     }
 
     /**
-     * @param pwd the pwd to set
+     * @param password the password to set
      */
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setpassword(String password) {
+        this.password = password;
     }
 
     /**

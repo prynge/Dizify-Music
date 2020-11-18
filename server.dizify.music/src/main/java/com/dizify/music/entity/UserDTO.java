@@ -1,32 +1,11 @@
 package com.dizify.music.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-/**
- * Entité User persistente en base de données.
- * 
- * @author Yann KOTTO
- * @author Maxime GRAND
- * @since 2020-11
- * @version 1.0
- */
-@Entity
-@Table(name = "user")
-public class User {
-    
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO {
     private Integer id;
     
-    @Id
     private String email;
 
-    @JsonIgnore
     private String password;
     
     private String fname;
@@ -35,7 +14,6 @@ public class User {
     
     private String avatar;
     
-    @ManyToOne
     private Role role;
 
     /**
@@ -135,5 +113,5 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-    
+
 }

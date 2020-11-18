@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +40,6 @@ public class UserController {
     private UserRepository userRepository;
     private PlaylistRepository playlistRepository;
     private FavRepository favRepository;
-    //private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserController(UserRepository userRepository, PlaylistRepository playlistRepository, FavRepository favRepository) {
@@ -147,13 +145,5 @@ public class UserController {
         return updated;
     }
     
-    /*
-     * Signup
-     */
-//    @PostMapping("/signup")
-//    public void signUp(@RequestBody User user){
-//        user.setPwd(bCryptPasswordEncoder.encode(user.getPwd()));
-//        userRepository.save(user);
-//    }
 
 }
