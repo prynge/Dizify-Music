@@ -1,0 +1,48 @@
+.App {
+  text-align: center;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-login {
+  position: relative;
+  margin-top: 40px;
+}
+
+.form-signup {
+  position: relative;
+  margin-top: 20px;
+}
+
+.form-create-playlist {
+  position: relative;
+  margin-top: 70px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  text-align: center;
+  color: white;
+  align-items: center;
+}
+
+.footer span {
+  vertical-align: sub;
+}
