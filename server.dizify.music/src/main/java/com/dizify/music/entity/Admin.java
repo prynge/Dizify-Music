@@ -44,9 +44,8 @@ public class Admin {
 	public Admin() {
 	}
 
-	public Admin(String username, String email, String password) {
+	public Admin(String username, String password) {
 		this.username = username;
-		this.email = email;
 		this.password = password;
 	}
 

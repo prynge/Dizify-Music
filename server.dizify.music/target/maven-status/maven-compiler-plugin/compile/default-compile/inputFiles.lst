@@ -26,7 +26,6 @@ D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com
 D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\RestWsApplication.java
 D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\Album.java
 D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\service\storage\FileSystemStorageService.java
-D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\controller\FileUploadController.java
 D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\repository\AlbumRepository.java
 D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\service\storage\StorageService.java
 D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\repository\TitleRepository.java

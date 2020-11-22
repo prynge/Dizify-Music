@@ -75,7 +75,6 @@ public class AdminController {
 
     @ResponseBody
     @GetMapping("/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
     public Admin getAdminById(final @PathVariable("id") String adminId) {
         try {
             Optional<Admin> admin = adminRepository.findById(Long.valueOf(adminId));
@@ -126,21 +125,14 @@ public class AdminController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser( @RequestBody JwtRequest signUpRequest) {
-		if (adminRepository.existsByUsername(signUpRequest.getUsername())) {
+		if (adminRepository.existsByUsername(signUpRequest.getEmail())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Error: Username is already taken!"));
 		}
 
-		if (adminRepository.existsByEmail(signUpRequest.getEmail())) {
-			return ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Error: Email is already in use!"));
-		}
-
 		// Create new user's account
-		Admin admin = new Admin(signUpRequest.getUsername(), 
-							 signUpRequest.getEmail(),
+		Admin admin = new Admin(signUpRequest.getEmail(),
 							 encoder.encode(signUpRequest.getPassword()));
 
 		

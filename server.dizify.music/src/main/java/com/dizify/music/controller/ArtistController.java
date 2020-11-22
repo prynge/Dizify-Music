@@ -60,7 +60,6 @@ public class ArtistController {
      * Supprimer un artiste 
      */
     @DeleteMapping("/artist/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public void deleteArtist(final @PathVariable("id") Integer artistId) {
         artistRepository.deleteById(artistId);
     }
@@ -189,7 +188,14 @@ public class ArtistController {
      */
     @ResponseBody
     @PutMapping("/artist/{id}")
-    public Artist editArtist(@RequestBody Artist artist) {
+    public Artist editArtist(@PathVariable("id") Integer artistId, @RequestParam("artist") String artistName, HttpServletRequest request, @RequestParam("file") MultipartFile file,
+    		RedirectAttributes redirectAttributes) {
+    	storageService.store(file);
+    	String picture = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/files/"+file.getOriginalFilename(); 
+    	Artist artist= new Artist();
+    	artist.setId(artistId);
+    	artist.setName(artistName);
+    	artist.setPicture(picture);
         Artist updated = artistRepository.save(artist);
         return updated;
     }

@@ -34,7 +34,6 @@ public class TitleController {
      */
     @ResponseBody
     @RequestMapping(value = "/title", method = RequestMethod.GET, params = "name")
-	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<Title> getTitleByName(@RequestParam(value = "name", defaultValue = "") String name) {
         List<Title> titles = titleRepository.findByName(name);
         return titles;
