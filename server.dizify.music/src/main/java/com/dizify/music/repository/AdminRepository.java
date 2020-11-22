@@ -1,11 +1,8 @@
 package com.dizify.music.repository;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
 import com.dizify.music.entity.Admin;
 
 /**
@@ -16,15 +13,12 @@ import com.dizify.music.entity.Admin;
  * @since 2020-11
  * @version 1.0
  */
-public interface AdminRepository extends JpaRepository<Admin, Integer> {
+public interface AdminRepository extends JpaRepository<Admin, Long> {
 
-    /**
-     * Recherche un administrateur selon son pseudo.
-     * 
-     * @param pseudo paramètre de recherche
-     * @return un administrateur
-     */
-    @Query("SELECT b FROM Admin b WHERE b.pseudo LIKE %:pseudo%")
-    public List<Admin> findByPseudo(@Param("pseudo") String pseudo);
+	Optional<Admin> findByUsername(String username);
+
+	Boolean existsByUsername(String username);
+
+	Boolean existsByEmail(String email);
 
 }

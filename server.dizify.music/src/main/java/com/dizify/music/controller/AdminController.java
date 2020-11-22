@@ -2,8 +2,17 @@ package com.dizify.music.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +24,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dizify.music.entity.Admin;
+import com.dizify.music.entity.ERole;
+import com.dizify.music.entity.Role;
+import com.dizify.music.entity.payload.JwtRequest;
+import com.dizify.music.entity.payload.JwtResponse;
+import com.dizify.music.entity.payload.MessageResponse;
 import com.dizify.music.repository.AdminRepository;
+import com.dizify.music.repository.RoleRepository;
+import com.dizify.music.security.JwtUtils;
+import com.dizify.music.service.AdminDetailsImpl;
+import com.dizify.music.service.JwtAdminDetailsService;
+import com.dizify.music.service.JwtUserDetailsService;
+import com.dizify.music.service.UserDetailsImpl;
 
 /*
  * Gestion des roles
@@ -26,10 +46,27 @@ import com.dizify.music.repository.AdminRepository;
  * 
  */
 @RestController
-@RequestMapping(value = "/api")
+@CrossOrigin
+@RequestMapping(value = "/admin")
 public class AdminController {
 
+	@Autowired
+	AuthenticationManager authenticationManager;
+
+	@Autowired
     private AdminRepository adminRepository;
+
+	@Autowired
+	RoleRepository roleRepository;
+
+	@Autowired
+	PasswordEncoder encoder;
+	
+	@Autowired
+	private JwtAdminDetailsService adminDetailsService;
+
+	@Autowired
+	JwtUtils jwtUtils;
 
     @Autowired
     public AdminController(AdminRepository adminRepository) {
@@ -37,37 +74,84 @@ public class AdminController {
     }
 
     @ResponseBody
-    @GetMapping("/admin/{mail}")
-    public Admin getAdminById(final @PathVariable("id") Integer adminMail) {
+    @GetMapping("/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
+    public Admin getAdminById(final @PathVariable("id") String adminId) {
         try {
-            Optional<Admin> admin = adminRepository.findById(Integer.valueOf(adminMail));
+            Optional<Admin> admin = adminRepository.findById(Long.valueOf(adminId));
             return admin.get();
         } catch (Exception e) {
             return null;
         }
     }
     
-    @DeleteMapping("/admin/{id}")
-    public void deleteAdmin(final @PathVariable("id") Integer adminId) {
+    @DeleteMapping("/{id}")
+    public void deleteAdmin(final @PathVariable("id") Long adminId) {
         adminRepository.deleteById(adminId);
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/")
     public List<Admin> getAdmins() {
         return adminRepository.findAll();
     }
 
-    @PostMapping("/admin")
+    @PostMapping("/")
     public Admin addAdmin(@RequestBody Admin admin) {
         Admin saved = adminRepository.save(admin);
         return saved;
     }
 
     @ResponseBody
-    @PutMapping("/admin/{id}")
+    @PutMapping("/{id}")
     public Admin editAdmin(@RequestBody Admin admin) {
         Admin updated = adminRepository.save(admin);
         return updated;
     }
+    
+    @PostMapping("/signin")
+	public ResponseEntity<?> authenticateUser(@RequestBody JwtRequest loginRequest) {
+
+		final AdminDetailsImpl userDetails = (AdminDetailsImpl) adminDetailsService.loadUserByUsername(loginRequest.getEmail());
+		final String jwt = jwtUtils.generateToken(userDetails);		
+		List<String> roles = userDetails.getAuthorities().stream()
+				.map(item -> item.getAuthority())
+				.collect(Collectors.toList());
+		return ResponseEntity.ok(new JwtResponse(jwt, 
+												 userDetails.getId().intValue(), 
+												 userDetails.getUsername(), 
+												 userDetails.getUsername(), 
+												 userDetails.getEmail(), 
+												 roles));
+	}
+
+	@PostMapping("/signup")
+	public ResponseEntity<?> registerUser( @RequestBody JwtRequest signUpRequest) {
+		if (adminRepository.existsByUsername(signUpRequest.getUsername())) {
+			return ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Error: Username is already taken!"));
+		}
+
+		if (adminRepository.existsByEmail(signUpRequest.getEmail())) {
+			return ResponseEntity
+					.badRequest()
+					.body(new MessageResponse("Error: Email is already in use!"));
+		}
+
+		// Create new user's account
+		Admin admin = new Admin(signUpRequest.getUsername(), 
+							 signUpRequest.getEmail(),
+							 encoder.encode(signUpRequest.getPassword()));
+
+		
+		Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+
+
+		admin.setRoles(adminRole);
+		adminRepository.save(admin);
+
+		return ResponseEntity.ok(new MessageResponse("Admin registered successfully!"));
+	}
 
 }

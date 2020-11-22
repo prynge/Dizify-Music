@@ -11,52 +11,44 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.dizify.music.entity.Admin;
 import com.dizify.music.entity.Role;
 import com.dizify.music.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class UserDetailsImpl implements UserDetails {
+public class AdminDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
+	private Long id;
 
-	private String lname;
-	
-	private String fname;
+	private String username;
 
 	private String email;
 
-	private String avatar;
-	
-	private String role;
-	
 	@JsonIgnore
 	private String password;
 	
 	private Collection<? extends GrantedAuthority> authorities;
 
 
-	public UserDetailsImpl(Integer id, String fname, String lname, String email, String password, String avatar, Collection<? extends GrantedAuthority> authorities) {
+	public AdminDetailsImpl(Long id, String username, String email, String password,
+			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
-		this.fname = fname;
-		this.lname = lname;
+		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.authorities = authorities;
-		this.avatar = avatar;
 	}
 
-	public static UserDetailsImpl build(User user) {
+	public static AdminDetailsImpl build(Admin admin) {
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(user.getRole().getName().name()));
+		authorities.add(new SimpleGrantedAuthority(admin.getRoles().getName().name()));
 		
-		return new UserDetailsImpl(
-				user.getId(), 
-				user.getFname(), 
-				user.getLname(), 
-				user.getEmail(),
-				user.getPassword(), 
-				user.getAvatar(),
+		return new AdminDetailsImpl(
+				admin.getId(), 
+				admin.getUsername(), 
+				admin.getEmail(),
+				admin.getPassword(), 
 				authorities);
 	}
 
@@ -65,7 +57,7 @@ public class UserDetailsImpl implements UserDetails {
 		return authorities;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -78,26 +70,11 @@ public class UserDetailsImpl implements UserDetails {
 		return password;
 	}
 
-	public String getFname() {
-		return fname;
+	@Override
+	public String getUsername() {
+		return username;
 	}
 
-	public String getLname() {
-		return lname;
-	}
-	
-	public String getAvatar() {
-		return avatar;
-	}
-	
-	public String getRole() {
-		return role;
-	}
-	
-	public void setRole(String role) {
-		this.role = role;
-	}
-	
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
@@ -124,14 +101,8 @@ public class UserDetailsImpl implements UserDetails {
 			return true;
 		if (o == null || getClass() != o.getClass())
 			return false;
-		UserDetailsImpl user = (UserDetailsImpl) o;
-		return Objects.equals(id, user.id);
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return email;
+		AdminDetailsImpl admin = (AdminDetailsImpl) o;
+		return Objects.equals(id, admin.id);
 	}
 
 }

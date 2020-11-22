@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,7 +52,7 @@ public class AlbumController {
      * Liste aléatoire de 3 Albums à l'accueil
      */
     @ResponseBody
-    @GetMapping("/albt3")
+    @GetMapping("/album/alb3")
     public List<Album> get3Albums() {
         List<Album> album= albumRepository.findAll();
         System.out.println(album);
@@ -91,6 +93,14 @@ public class AlbumController {
     public Album addAlbum(@RequestBody Album album) {
         Album saved = albumRepository.save(album);
         return saved;
+    }
+    
+    /*
+     * Supprimer un album 
+     */
+    @DeleteMapping("/album/{id}")
+    public void deleteAlbum(final @PathVariable("id") Integer albumId) {
+        albumRepository.deleteById(albumId);
     }
 
 }

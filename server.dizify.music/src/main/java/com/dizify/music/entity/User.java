@@ -38,6 +38,16 @@ public class User {
     @ManyToOne
     private Role role;
 
+    public User() {
+	}
+
+	public User(String fname, String lname, String email, String password) {
+		this.fname = fname;
+		this.lname = lname;
+		this.email = email;
+		this.password = password;
+	}
+    
     /**
      * @return the email
      */
@@ -48,7 +58,7 @@ public class User {
     /**
      * @return the password
      */
-    public String getpassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -90,7 +100,7 @@ public class User {
     /**
      * @param password the password to set
      */
-    public void setpassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

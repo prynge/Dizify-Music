@@ -1,22 +1,44 @@
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\controller\AlbumController.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\repository\PlaylistRepository.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\entity\Title.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\repository\ArtistRepository.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\repository\UserRepository.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\entity\Playlist.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\repository\AdminRepository.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\entity\Fav.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\controller\AdminController.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\controller\PlaylistController.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\repository\TitleRepository.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\entity\Artist.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\repository\AlbumRepository.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\controller\ArtistController.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\entity\Admin.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\repository\FavRepository.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\controller\FavController.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\controller\TitleController.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\controller\UserController.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\entity\Album.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\entity\User.java
-D:\Programmes\Ynov-Work-Space\dizify.music\src\main\java\com\dizify\music\RestWsApplication.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\repository\PlaylistRepository.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\Admin.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\payload\JwtResponse.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\Fav.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\controller\AdminController.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\Artist.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\payload\MessageResponse.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\controller\AuthController.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\controller\PlaylistController.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\User.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\repository\ArtistRepository.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\Role.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\security\JwtRequestFilter.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\service\AdminDetailsImpl.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\controller\AlbumController.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\Title.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\security\WebSecurity.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\UserDTO.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\service\UserDetailsImpl.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\security\AuthEntryPointJwt.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\Playlist.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\ERole.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\security\JwtUtils.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\repository\AdminRepository.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\repository\RoleRepository.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\RestWsApplication.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\Album.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\service\storage\FileSystemStorageService.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\controller\FileUploadController.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\repository\AlbumRepository.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\service\storage\StorageService.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\repository\TitleRepository.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\service\JwtAdminDetailsService.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\entity\payload\JwtRequest.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\repository\FavRepository.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\repository\UserRepository.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\controller\TitleController.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\controller\UserController.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\service\storage\StorageProperties.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\service\storage\StorageException.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\service\JwtUserDetailsService.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\controller\ArtistController.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\service\storage\StorageFileNotFoundException.java
+D:\Programmes\Ynov-Work-Space\Dizify Music\server.dizify.music\src\main\java\com\dizify\music\controller\FavController.java

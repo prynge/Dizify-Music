@@ -14,7 +14,7 @@ public class UserDTO {
     
     private String avatar;
     
-    private Role role;
+    private String role;
 
     /**
      * @return the email
@@ -26,7 +26,7 @@ public class UserDTO {
     /**
      * @return the password
      */
-    public String getpassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -103,14 +103,14 @@ public class UserDTO {
     /**
      * @return the role
      */
-    public Role getRole() {
+    public String getRole() {
 		return role;
 	}
 
     /**
      * @param role the role to set
      */
-	public void setRole(Role role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 
