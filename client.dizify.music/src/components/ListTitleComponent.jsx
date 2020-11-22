@@ -67,7 +67,7 @@ class ListTitleComponent extends Component {
                                                 {showAdminBoard && (
                                                 <button style={{ marginLeft: "10px" }} onClick={() => this.editTitle(title.id)} className="btn btn-info">Modifier</button>)}
                                                 {showAdminBoard && (
-                                                <button style={{ marginLeft: "10px" }} onClick={() => this.deleteTitle(title.id)} className="btn btn-info">Supprimer</button>)}
+                                                <button style={{ marginLeft: "10px" }} onClick={() => this.deleteTitle(title.id)} className="btn btn-danger">Supprimer</button>)}
                                             </td>
                                         </tr>
                                 )
